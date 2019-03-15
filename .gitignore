@@ -70,3 +70,6 @@ yarn-error.log
 
 # IDE files
 .history/
+
+# Local files
+src/images/
