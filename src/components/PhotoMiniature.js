@@ -19,7 +19,7 @@ const Box = posed.div({
   },
 });
 
-const Photo = props => {
+const PhotoMiniature = props => {
   const angle = randomInt(0, 360);
   const distance = randomInt(50, 100);
 
@@ -38,4 +38,4 @@ const Photo = props => {
   );
 };
 
-export default Photo;
+export default PhotoMiniature;

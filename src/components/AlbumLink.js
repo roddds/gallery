@@ -2,7 +2,7 @@ import * as React from "react";
 import Case from "case";
 import { useState } from "react";
 import posed from "react-pose";
-import Photo from "./Photo";
+import PhotoMiniature from "./PhotoMiniature";
 import "./gallery.css";
 
 const Box = posed.div({
@@ -26,7 +26,7 @@ const AlbumLink = props => {
       </div>
       <div className="album--link">
         {props.photos.map(photo => (
-          <Photo src={photo.source} key={photo.index} hover={hover} />
+          <PhotoMiniature src={photo.source} key={photo.index} hover={hover} />
         ))}
       </div>
     </div>
