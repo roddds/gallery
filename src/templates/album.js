@@ -1,11 +1,12 @@
 import * as React from "react";
+import Album from "../components/Album";
 
-const Album = props => {
+const AlbumTemplate = props => {
   const ctx = props.pageContext;
+  console.log({ ctx });
 
   return (
     <>
-      {ctx.name}
       {ctx.photos.map(photo => (
         <img src={photo.source} />
       ))}
@@ -13,4 +14,4 @@ const Album = props => {
   );
 };
 
-export default Album;
+export default AlbumTemplate;

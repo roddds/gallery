@@ -1,7 +1,8 @@
 import * as React from "react";
 
-const Photo = props => {
+const PhotoTemplate = props => {
   const ctx = props.pageContext;
+
   return (
     <>
       <p>{ctx.album}</p>
@@ -13,4 +14,4 @@ const Photo = props => {
   );
 };
 
-export default Photo;
+export default PhotoTemplate;

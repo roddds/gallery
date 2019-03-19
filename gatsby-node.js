@@ -10,9 +10,9 @@ const path = require("path");
 
 async function createPages({ graphql, actions }) {
   const { createPage } = actions;
-  const photoTemplate = path.resolve("./src/templates/photo.js");
-  const albumTemplate = path.resolve("./src/templates/album.js");
-  const listTemplate = path.resolve("./src/templates/list.js");
+  const PhotoTemplate = path.resolve("./src/templates/photo.js");
+  const AlbumTemplate = path.resolve("./src/templates/album.js");
+  const ListTemplate = path.resolve("./src/templates/list.js");
 
   await graphql(`
     {
@@ -57,7 +57,7 @@ async function createPages({ graphql, actions }) {
     albumArray.forEach(album => {
       createPage({
         path: album,
-        component: albumTemplate,
+        component: AlbumTemplate,
         context: {
           name: album,
           photos: photos[album],
@@ -67,7 +67,7 @@ async function createPages({ graphql, actions }) {
       photos[album].forEach((photo, index) => {
         createPage({
           path: `/${album}/${index}/`,
-          component: photoTemplate,
+          component: PhotoTemplate,
           context: photo,
         });
       });
@@ -76,7 +76,7 @@ async function createPages({ graphql, actions }) {
     // create album list
     createPage({
       path: `/`,
-      component: listTemplate,
+      component: ListTemplate,
       context: {
         albums: albumArray,
         allPhotos: photos,
