@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import AlbumLink from "../components/AlbumLink";
 
 const AlbumList = props => {
   const ctx = props.pageContext;
@@ -7,9 +7,9 @@ const AlbumList = props => {
   return (
     <>
       {ctx.albums.map(album => (
-        <p>
-          <Link to={album}>{album.replace("album/", "")}</Link>
-        </p>
+        <a href={album}>
+          <AlbumLink album={album} photos={ctx.allPhotos[album]} />
+        </a>
       ))}
     </>
   );

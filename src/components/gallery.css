@@ -1,0 +1,52 @@
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+.album--link__wrapper {
+  margin: 50px;
+  width: 250px;
+  height: 250px;
+  display: inline-block;
+}
+
+.album--link {
+  position: relative;
+}
+
+.photo--wrapper {
+  display: inline;
+  position: absolute;
+  transform-origin: 50% 50%;
+}
+
+.photo--wrapper img {
+  border-radius: 10px;
+}
+
+.photo--wrapper__frame img {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  border-radius: 5px;
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.album--name__wrapper {
+  position: absolute;
+  margin-left: -30px;
+  width: 300px;
+}
+
+.album--name {
+  color: white;
+  font-size: 32px;
+  z-index: 100;
+  position: relative;
+  text-align: center;
+  top: 250px;
+}
+
+body {
+  background-color: #1e1e1e;
+}
