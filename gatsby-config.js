@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Gallery`,
     description: `A statically generated photo gallery.`,
-    author: `@gatsbyjs`,
+    author: `@roddds`,
   },
   plugins: [
     {
