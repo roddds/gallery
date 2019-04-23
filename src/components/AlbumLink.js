@@ -26,7 +26,7 @@ const AlbumLink = props => {
       </div>
       <div className="album--link">
         {props.photos.map(photo => (
-          <PhotoMiniature src={photo} key={photo.index} hover={hover} />
+          <PhotoMiniature key={photo} src={photo} hover={hover} />
         ))}
       </div>
     </div>

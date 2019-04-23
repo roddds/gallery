@@ -5,7 +5,7 @@ const ListTemplate = props => {
   const ctx = props.pageContext;
 
   return ctx.albums.map(album => (
-    <a href={album}>
+    <a href={album} key={album}>
       <AlbumLink album={album} photos={ctx.allPhotos[album]} />
     </a>
   ));
