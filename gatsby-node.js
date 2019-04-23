@@ -8,18 +8,14 @@
 
 const path = require("path");
 
-async function createPages({ graphql, actions }) {
-  const { createPage } = actions;
-  const PhotoTemplate = path.resolve("./src/templates/photo.js");
-  const AlbumTemplate = path.resolve("./src/templates/album.js");
-  const ListTemplate = path.resolve("./src/templates/list.js");
-
-  await graphql(`
-    {
+async function getFileNames(graphql) {
+  const files = await graphql(`
+    query {
       allFile(filter: { relativeDirectory: { glob: "photos/**" } }) {
         edges {
           node {
             relativeDirectory
+            relativePath
             publicURL
           }
         }
@@ -30,56 +26,125 @@ async function createPages({ graphql, actions }) {
       throw result.errors;
     }
 
-    const albums = new Set();
-    const photos = {};
+    return result;
+  });
 
-    // create album photo detail views
-    result.data.allFile.edges.forEach((edge, index) => {
-      const photoNode = edge.node;
-      const album = photoNode.relativeDirectory.replace("photos/", "album/");
-      albums.add(album);
+  return files.data.allFile.edges;
+}
 
-      if (!photos[album]) {
-        photos[album] = [];
+async function getAlbums(graphql) {
+  const directories = await graphql(`
+    query {
+      allFile(filter: { relativeDirectory: { glob: "photos/*" } }) {
+        edges {
+          node {
+            relativeDirectory
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      throw result.errors;
+    }
+
+    return result.data.allFile.edges.map(f => f.node.relativeDirectory);
+  });
+
+  return Array.from(new Set(directories));
+}
+
+async function getMiniatures(graphql, paths, albums) {
+  const miniatures = {};
+  albums.forEach(a => (miniatures[a] = []));
+
+  paths.forEach(async path => {
+    const album = path.split("/", 2).join("/");
+    const miniature = await graphql(
+      `
+        query SmallImage($path: String) {
+          file(relativePath: { eq: $path }) {
+            childImageSharp {
+              fluid(maxWidth: 250, quality: 100) {
+                src
+              }
+            }
+          }
+        }
+      `,
+      { path }
+    ).then(result => {
+      if (result.errors) {
+        throw result.errors;
       }
 
-      const photo = {
-        source: photoNode.publicURL,
-        index: index,
-        album: album,
-      };
-
-      photos[album].push(photo);
+      miniatures[album].push(result.data.file.childImageSharp.fluid.src);
     });
+  });
 
-    const albumArray = Array.from(albums);
+  return miniatures;
+}
 
-    albumArray.forEach(album => {
-      createPage({
-        path: album,
-        component: AlbumTemplate,
-        context: {
-          name: album,
-          photos: photos[album],
-        },
-      });
+async function getFullSizedImages(graphql, paths, albums) {
+  const fullSized = {};
+  albums.forEach(a => (fullSized[a] = []));
 
-      photos[album].forEach((photo, index) => {
-        createPage({
-          path: `/${album}/${index}/`,
-          component: PhotoTemplate,
-          context: photo,
-        });
-      });
+  paths.forEach(async path => {
+    const album = path.split("/", 2).join("/");
+    const miniature = await graphql(
+      `
+        query SmallImage($path: String) {
+          file(relativePath: { eq: $path }) {
+            childImageSharp {
+              fluid(maxWidth: 2048, quality: 100) {
+                src
+              }
+            }
+          }
+        }
+      `,
+      { path }
+    ).then(result => {
+      if (result.errors) {
+        throw result.errors;
+      }
+
+      fullSized[album].push(result.data.file.childImageSharp.fluid.src);
     });
+  });
 
-    // create album list
-    createPage({
-      path: `/`,
-      component: ListTemplate,
+  return fullSized;
+}
+
+async function createPages({ graphql, actions }) {
+  const ListTemplate = path.resolve("./src/templates/list.js");
+  const AlbumTemplate = path.resolve("./src/templates/album.js");
+
+  // get all files
+  // { publicUrl, relativeDirectory }
+  const files = await getFileNames(graphql);
+  const paths = files.map(f => f.node.relativePath);
+  const albums = await getAlbums(graphql);
+
+  const miniatures = await getMiniatures(graphql, paths, albums);
+  const fullSized = await getFullSizedImages(graphql, paths, albums);
+
+  actions.createPage({
+    path: `/`,
+    component: ListTemplate,
+    context: {
+      albums: albums,
+      allPhotos: miniatures,
+    },
+  });
+
+  albums.forEach(album => {
+    actions.createPage({
+      path: album,
+      component: AlbumTemplate,
       context: {
-        albums: albumArray,
-        allPhotos: photos,
+        name: album,
+        photos: fullSized[album],
       },
     });
   });
