@@ -32,7 +32,7 @@ const PhotoMiniature = props => {
       pose={props.hover ? "hovered" : "normal"}
     >
       <div className="photo--wrapper__frame">
-        <img src={props.src} />
+        <img alt="" src={props.src} />
       </div>
     </Box>
   );
