@@ -21,12 +21,12 @@ const AlbumLink = props => {
     >
       <div className="album--name__wrapper">
         <Box pose={hover ? "enter" : "exit"} className="album--name">
-          {Case.title(props.album.replace("album/", ""))}
+          {Case.title(props.album.replace("photos/", ""))}
         </Box>
       </div>
       <div className="album--link">
         {props.photos.map(photo => (
-          <PhotoMiniature src={photo.source} key={photo.index} hover={hover} />
+          <PhotoMiniature src={photo} key={photo.index} hover={hover} />
         ))}
       </div>
     </div>
