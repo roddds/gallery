@@ -7,8 +7,9 @@ function SlideShow(props) {
   const { photos } = props;
   const [current, setCurrent] = useState(0);
 
-  const next = () => setCurrent(c => (c + 1) % photos.length);
-  const prev = () => setCurrent(c => (c - 1) % photos.length);
+  const n = photos.length;
+  const next = () => setCurrent(c => c + 1);
+  const prev = () => setCurrent(c => c - 1);
 
   const leftKey = e => e.key === "ArrowLeft";
   const rightKey = e => e.key === "ArrowRight";
@@ -26,7 +27,12 @@ function SlideShow(props) {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <img alt="" onClick={next} style={imageStyle} src={photos[current]} />
+      <img
+        alt=""
+        onClick={next}
+        style={imageStyle}
+        src={photos[((current % n) + n) % n]}
+      />
     </div>
   );
 }
