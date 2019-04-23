@@ -1,17 +1,10 @@
 import * as React from "react";
-import Album from "../components/Album";
+import Slideshow from "../components/Slideshow";
 
 const AlbumTemplate = props => {
   const ctx = props.pageContext;
-  console.log({ ctx });
 
-  return (
-    <>
-      {ctx.photos.map(photo => (
-        <img src={photo.source} />
-      ))}
-    </>
-  );
+  return <Slideshow {...ctx} />;
 };
 
 export default AlbumTemplate;
