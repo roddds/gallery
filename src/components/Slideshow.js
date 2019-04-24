@@ -31,11 +31,11 @@ function SlideShow(props) {
   useArrows(prev, next);
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <img
+    <div className="slideshow--wrapper">
+      <Img
         alt=""
+        className="slideshow--image"
         onClick={next}
-        style={imageStyle}
         src={photos[((current % n) + n) % n]}
       />
     </div>

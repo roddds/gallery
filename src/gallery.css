@@ -1,5 +1,7 @@
-html {
+body {
   font-family: "Montserrat", sans-serif;
+  background-color: #1e1e1e;
+  margin: 0;
 }
 
 .album--link__wrapper {
@@ -47,6 +49,8 @@ html {
   top: 250px;
 }
 
-body {
-  background-color: #1e1e1e;
+.slideshow--image {
+  max-width: 90vw;
+  max-height: 90vw;
+  padding: 5vw 5vw;
 }
