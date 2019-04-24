@@ -3,11 +3,11 @@ import { Helmet } from "react-helmet";
 import AlbumLink from "../components/AlbumLink";
 
 const ListTemplate = props => {
-  const ctx = props.pageContext;
+  const { albums, allPhotos } = props.pageContext;
 
-  const albums = ctx.albums.map(album => (
+  const albumLinks = albums.map(album => (
     <a href={album} key={album}>
-      <AlbumLink album={album} photos={ctx.allPhotos[album]} />
+      <AlbumLink album={album} photos={allPhotos[album]} />
     </a>
   ));
 
@@ -16,7 +16,7 @@ const ListTemplate = props => {
       <Helmet>
         <title>Gallery</title>
       </Helmet>
-      {albums}
+      {albumLinks}
     </>
   );
 };
