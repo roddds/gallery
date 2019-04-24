@@ -20,7 +20,7 @@ const AlbumLink = props => {
     >
       <div className="album--name__wrapper">
         <Box pose={hover ? "enter" : "exit"} className="album--name">
-          {Case.title(props.album.replace("photos/", ""))}
+          {Case.title(props.album)}
         </Box>
       </div>
       <div className="album--link">
