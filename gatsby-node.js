@@ -48,7 +48,9 @@ async function getAlbums(graphql) {
       throw result.errors;
     }
 
-    return result.data.allFile.edges.map(f => f.node.relativeDirectory);
+    return result.data.allFile.edges.map(f =>
+      f.node.relativeDirectory.replace("photos/", "")
+    );
   });
 
   return Array.from(new Set(directories));
@@ -59,7 +61,7 @@ async function getMiniatures(graphql, paths, albums) {
   albums.forEach(a => (miniatures[a] = []));
 
   paths.forEach(async path => {
-    const album = path.split("/", 2).join("/");
+    const album = path.split("/", 2)[1];
     const miniature = await graphql(
       `
         query SmallImage($path: String) {
@@ -90,7 +92,7 @@ async function getFullSizedImages(graphql, paths, albums) {
   albums.forEach(a => (fullSized[a] = []));
 
   paths.forEach(async path => {
-    const album = path.split("/", 2).join("/");
+    const album = path.split("/", 2)[1];
     const miniature = await graphql(
       `
         query SmallImage($path: String) {
