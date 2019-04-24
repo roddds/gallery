@@ -3,7 +3,6 @@ import Case from "case";
 import { useState } from "react";
 import posed from "react-pose";
 import PhotoMiniature from "./PhotoMiniature";
-import "./gallery.css";
 
 const Box = posed.div({
   enter: { opacity: 1 },

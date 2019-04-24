@@ -1,6 +1,5 @@
 import * as React from "react";
 import posed from "react-pose";
-import "./gallery.css";
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
