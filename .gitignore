@@ -74,3 +74,6 @@ yarn-error.log
 
 # Local files
 src/images/photos/
+
+# Python
+.python-version
