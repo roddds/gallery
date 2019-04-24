@@ -1,20 +1,14 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import posed from "react-pose";
 
-const imageStyle = { maxWidth: "100vw", maxHeight: "100vh" };
+const Img = posed.img({});
 
-function SlideShow(props) {
-  const { photos } = props;
-  const [current, setCurrent] = useState(0);
+const leftKey = e => e.key === "ArrowLeft";
+const rightKey = e => e.key === "ArrowRight";
 
-  const n = photos.length;
-  const next = () => setCurrent(c => c + 1);
-  const prev = () => setCurrent(c => c - 1);
-
-  const leftKey = e => e.key === "ArrowLeft";
-  const rightKey = e => e.key === "ArrowRight";
-
-  useEffect(() => {
+const useArrows = (prev, next) => {
+  return useEffect(() => {
     const handler = e => {
       leftKey(e) && prev();
       rightKey(e) && next();
@@ -24,6 +18,17 @@ function SlideShow(props) {
 
     return () => document.removeEventListener("keydown", handler);
   });
+};
+
+function SlideShow(props) {
+  const { photos } = props;
+  const [current, setCurrent] = useState(0);
+
+  const n = photos.length;
+  const next = () => setCurrent(c => c + 1);
+  const prev = () => setCurrent(c => c - 1);
+
+  useArrows(prev, next);
 
   return (
     <div style={{ textAlign: "center" }}>
