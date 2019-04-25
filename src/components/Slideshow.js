@@ -46,12 +46,6 @@ function SlideShow(props) {
     up: () => window.history.back(),
   });
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTitleVisible(false);
-    }, 1000);
-  });
-
   return (
     <div className="slideshow--wrapper">
       <Img
