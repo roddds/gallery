@@ -6,12 +6,24 @@ const Img = posed.img({});
 
 const leftKey = e => e.key === "ArrowLeft";
 const rightKey = e => e.key === "ArrowRight";
+const upKey = e => e.key === "ArrowUp";
+const downKey = e => e.key === "ArrowDown";
 
-const useArrows = (prev, next) => {
+const useArrows = arrows => {
+  const handlers = {
+    up: () => null,
+    down: () => null,
+    left: () => null,
+    right: () => null,
+    ...arrows,
+  };
+
   return useEffect(() => {
     const handler = e => {
-      leftKey(e) && prev();
-      rightKey(e) && next();
+      leftKey(e) && handlers.left();
+      rightKey(e) && handlers.right();
+      upKey(e) && handlers.up();
+      downKey(e) && handlers.down();
     };
 
     document.addEventListener("keydown", handler);
@@ -28,7 +40,17 @@ function SlideShow(props) {
   const next = () => setCurrent(c => c + 1);
   const prev = () => setCurrent(c => c - 1);
 
-  useArrows(prev, next);
+  useArrows({
+    left: prev,
+    right: next,
+    up: () => window.history.back(),
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTitleVisible(false);
+    }, 1000);
+  });
 
   return (
     <div className="slideshow--wrapper">
