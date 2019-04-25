@@ -1,6 +1,8 @@
 body {
   font-family: "Montserrat", sans-serif;
   background-color: #1e1e1e;
+  color: white;
+  overflow: hidden;
   margin: 0;
 }
 
@@ -41,7 +43,6 @@ body {
 }
 
 .album--name {
-  color: white;
   font-size: 32px;
   z-index: 100;
   position: relative;
