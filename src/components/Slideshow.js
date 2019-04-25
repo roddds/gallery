@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import posed, { PoseGroup } from "react-pose";
+import posed from "react-pose";
 
 const Img = posed.img({});
 const Header = posed.p({
