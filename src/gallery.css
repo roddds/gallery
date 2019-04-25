@@ -49,8 +49,13 @@ body {
   top: 250px;
 }
 
+.slideshow--wrapper {
+  text-align: center;
+  overflow: hidden;
+  padding: 5% 5%;
+}
+
 .slideshow--image {
   max-width: 90vw;
-  max-height: 90vw;
-  padding: 5vw 5vw;
+  max-height: 90vh;
 }
