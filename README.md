@@ -21,46 +21,18 @@ A static site site generator for photo galleries.
 Create a IAM account with administration permissions and create a access id and
 secret for it. You’ll need these in the next step.
 
-Install the AWS CLI and configure it (ensure python is installed before running these commands)
+Make a copy of the example `.env.example` file to create the production environment `.env`:
 
 ```bash
-pip install awscli
-aws configure
+cp .env.example .env.production
 ```
 
-The AWS CLI will now prompt you for the key & secret, add them.
+Add your AWS credentials and the name of the bucket you'll be going to use to `.env.production`.
 
-### Set up S3
+### Send your files to S3
 
-Let’s add hosting & make the site live on AWS. First, we’ll install the Gatsby
-S3 plugin:
+Run:
 
 ```bash
-yarn add gatsby-plugin-s3
-```
-
-Add it to your `gatsby-config.js`:
-
-```js
-plugins: [
-  {
-    resolve: `gatsby-plugin-s3`,
-  },
-];
-```
-
-And finally, add the deployment script to your `package.json`:
-
-```js
-"scripts": {
-   ...
-   "deploy": "gatsby-plugin-s3 deploy"
-}
-```
-
-Now run:
-
-```bash
-yarn build
-yarn deploy -- -b your-bucket-name
+yarn deploy
 ```

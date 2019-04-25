@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: `Gallery`,
@@ -8,7 +12,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: "my-website-bucket-placeholder",
+        bucketName: process.env.BUCKET_NAME,
       },
     },
     `gatsby-plugin-react-helmet`,
