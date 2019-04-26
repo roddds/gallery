@@ -6,6 +6,7 @@ body {
   margin: 0;
 }
 
+/* wrapper for the pile of pictures */
 .album--link__wrapper {
   margin: 50px;
   width: 250px;
@@ -13,10 +14,12 @@ body {
   display: inline-block;
 }
 
+/* the pile of pictures */
 .album--link {
   position: relative;
 }
 
+/* each photo */
 .photo--wrapper {
   display: inline;
   position: absolute;
