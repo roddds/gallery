@@ -14,7 +14,7 @@ const AlbumLink = props => {
 
   return (
     <div
-      className="album--link__wrapper"
+      className="album--link--wrapper"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

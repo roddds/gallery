@@ -7,7 +7,7 @@ body {
 }
 
 /* wrapper for the pile of pictures */
-.album--link__wrapper {
+.album--link--wrapper {
   margin: 50px;
   width: 250px;
   height: 250px;
