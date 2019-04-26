@@ -6,12 +6,20 @@ body {
   margin: 0;
 }
 
+/* all piles of pictures */
+.album--container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
 /* wrapper for the pile of pictures */
 .album--link--wrapper {
   margin: 50px;
   width: 250px;
   height: 250px;
-  display: inline-block;
+  flex: none;
 }
 
 /* the pile of pictures */
