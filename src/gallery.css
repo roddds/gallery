@@ -52,12 +52,14 @@ body {
 }
 
 .slideshow--wrapper {
-  text-align: center;
-  overflow: hidden;
-  padding: 5% 5%;
+  padding: 5vh 5vw;
 }
 
 .slideshow--image {
   max-width: 90vw;
   max-height: 90vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
