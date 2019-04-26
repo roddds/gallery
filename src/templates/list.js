@@ -16,7 +16,7 @@ const ListTemplate = props => {
       <Helmet>
         <title>Gallery</title>
       </Helmet>
-      {albumLinks}
+      <div className="album--container">{albumLinks}</div>
     </>
   );
 };
