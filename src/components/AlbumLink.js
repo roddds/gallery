@@ -17,6 +17,8 @@ const AlbumLink = props => {
       className="album--link--wrapper"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onTouchStart={() => setHover(true)}
+      onTouchEnd={() => setHover(false)}
     >
       <div className="album--name__wrapper">
         <Box pose={hover ? "enter" : "exit"} className="album--name">
