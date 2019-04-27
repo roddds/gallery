@@ -67,7 +67,7 @@ async function getMiniatures(graphql, paths, albums) {
         query SmallImage($path: String) {
           file(relativePath: { eq: $path }) {
             childImageSharp {
-              fluid(maxWidth: 200, quality: 100) {
+              fluid(maxWidth: 200, quality: 75) {
                 src
               }
             }
