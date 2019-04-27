@@ -9,16 +9,15 @@ body {
 .album--container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: left;
   align-content: space-around;
 }
 
 /* wrapper for the pile of pictures */
 .album--link--wrapper {
-  margin: 50px;
-  width: 250px;
-  height: 250px;
-  flex: none;
+  margin: 3em;
+  width: 15em;
+  height: 15em;
 }
 
 /* the pile of pictures */
@@ -48,17 +47,17 @@ body {
 
 .album--name__wrapper {
   position: absolute;
-  margin-left: -30px;
-  width: 300px;
+  width: 16em;
 }
 
 .album--name {
   color: white;
-  font-size: 32px;
+  font-size: 2em;
   z-index: 100;
   position: relative;
+  display: block;
   text-align: center;
-  top: 250px;
+  top: 6.5em;
 }
 
 .slideshow--wrapper {
