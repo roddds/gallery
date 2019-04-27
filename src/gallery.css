@@ -40,6 +40,7 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(200, 200, 200, 0.5);
   border-radius: 5px;
+  backface-visibility: hidden;
   max-height: 13em;
   max-width: 13em;
 }
