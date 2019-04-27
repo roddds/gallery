@@ -1,22 +1,16 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
-import AlbumLink from "../components/AlbumLink";
+import AlbumCollection from "../components/AlbumCollection";
 
 const ListTemplate = props => {
   const { albums, allPhotos } = props.pageContext;
-
-  const albumLinks = albums.map(album => (
-    <a href={album} key={album}>
-      <AlbumLink album={album} photos={allPhotos[album]} />
-    </a>
-  ));
 
   return (
     <>
       <Helmet>
         <title>Gallery</title>
       </Helmet>
-      <div className="album--container">{albumLinks}</div>
+      <AlbumCollection albums={albums} photos={allPhotos} />
     </>
   );
 };

@@ -18,6 +18,7 @@
     "gatsby-transformer-sharp": "^2.1.17",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
     "react-pose": "^4.0.8"

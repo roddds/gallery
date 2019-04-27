@@ -1,7 +1,7 @@
 import * as React from "react";
 import Case from "case";
-import { useState } from "react";
 import posed from "react-pose";
+import useDesktopHover from "../hooks/useDesktopHover";
 import PhotoMiniature from "./PhotoMiniature";
 
 const Box = posed.div({
@@ -10,24 +10,23 @@ const Box = posed.div({
 });
 
 const AlbumLink = props => {
-  const [hover, setHover] = useState(false);
+  const { active } = props;
+  const [hover, handlers] = useDesktopHover();
 
   return (
     <div
       className="album--link--wrapper"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onTouchStart={() => setHover(true)}
-      onTouchEnd={() => setHover(false)}
+      {...handlers}
+      onClick={() => props.onClick()}
     >
       <div className="album--name__wrapper">
-        <Box pose={hover ? "enter" : "exit"} className="album--name">
+        <Box pose={hover || active ? "enter" : "exit"} className="album--name">
           {Case.title(props.album)}
         </Box>
       </div>
       <div className="album--link">
         {props.photos.map(photo => (
-          <PhotoMiniature key={photo} src={photo} hover={hover} />
+          <PhotoMiniature key={photo} src={photo} hover={hover || active} />
         ))}
       </div>
     </div>

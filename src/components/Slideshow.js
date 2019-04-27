@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { navigate } from "gatsby";
 import posed from "react-pose";
 import useArrows from "../hooks/useArrows";
 
@@ -26,13 +27,15 @@ function SlideShow(props) {
   useArrows({
     left: prev,
     right: next,
-    up: () => window.history.back(),
+    up: () => navigate("/"),
   });
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setTitleVisible(false);
     }, 1000);
+
+    return () => clearTimeout(timeout);
   });
 
   return (
