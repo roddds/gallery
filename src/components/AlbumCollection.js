@@ -16,7 +16,6 @@ function AlbumCollection(props) {
         photos={photos[album]}
         active={isActive}
         onClick={() => {
-          console.log(`${album} was clicked ${isActive && "and its active"}`);
           if (isActive || isBrowser) {
             navigate(album);
           } else {
