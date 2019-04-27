@@ -13,7 +13,7 @@ function AlbumCollection(props) {
       <AlbumLink
         album={album}
         key={album}
-        photos={photos[album]}
+        photos={photos[album].slice(0, 10)}
         active={isActive}
         onClick={() => {
           if (isActive || isBrowser) {
