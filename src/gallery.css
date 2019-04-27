@@ -9,8 +9,7 @@ body {
 .album--container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: left;
-  align-content: space-around;
+  justify-content: center;
 }
 
 /* wrapper for the pile of pictures */
