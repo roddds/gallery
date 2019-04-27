@@ -9,10 +9,11 @@ A static site site generator for photo galleries.
 - From inside the repository, run `yarn` (or `npm install`)
 - Add your photos to the `src/images/photos/` directory. The directory names
   will be used as the album titles.
-- Run `gatsby build`. Your files will be in the `public/` directory. Copy those
-  to your static website host.
+- Run `gatsby build`. This might potentially take a long time (about 30s per 500
+  images). Your files will be in the `public/` directory. Copy those to your
+  static website host.
 
-## Deploying
+## Deploying to S3
 
 (this section adapted from [here](https://www.gatsbyjs.org/docs/deploying-to-s3-cloudfront/))
 
