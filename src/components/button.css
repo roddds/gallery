@@ -1,0 +1,94 @@
+div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+button {
+  display: inline-block;
+  border-radius: 50%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  outline: none;
+  border: none;
+}
+
+button:hover .left,
+button:hover .top,
+button:hover .bottom,
+button:hover .right {
+  border: 0.5em solid #e74c3c;
+}
+
+button:hover .left:after,
+button:hover .top:after,
+button:hover .bottom:after,
+button:hover .right:after {
+  border-top: 0.5em solid #e74c3c;
+  border-right: 0.5em solid #e74c3c;
+}
+
+.left,
+.top,
+.right,
+.bottom {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  border: 0.5em solid #333;
+  border-radius: 50%;
+}
+
+.left:after,
+.top:after,
+.bottom:after,
+.right:after {
+  content: "";
+  display: inline-block;
+  border-top: 0.5em solid #333;
+  border-right: 0.5em solid #333;
+  width: 1em;
+  height: 1em;
+}
+
+.left:after {
+  margin-top: 0.75em;
+  margin-left: 0.2em;
+  -moz-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.top:after {
+  margin-top: 1.4em;
+  -moz-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.bottom:after {
+  margin-top: 0.2em;
+  -moz-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.right:after {
+  margin-top: 0.75em;
+  margin-left: -0.2em;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.right {
+  margin-left: 1.5em;
+}
+.bottom {
+  margin-left: 0.75em;
+}
+.left {
+  margin-right: 1.5em;
+}
+.top {
+  margin-right: 0.75em;
+}

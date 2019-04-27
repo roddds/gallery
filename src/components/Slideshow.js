@@ -2,18 +2,10 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { navigate } from "gatsby";
 import posed from "react-pose";
+import Button from "./Button";
 import useArrows from "../hooks/useArrows";
 
 const Img = posed.img({});
-const Header = posed.p({
-  enter: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 5000 },
-  },
-});
 
 function SlideShow(props) {
   const { photos } = props;
@@ -40,24 +32,21 @@ function SlideShow(props) {
 
   return (
     <div className="slideshow--wrapper">
-      <Header
-        pose={titleVisible ? "enter" : "exit"}
-        key="header"
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          color: "#ddd",
-        }}
-      >
-        use your arrow keys
-      </Header>
       <Img
         alt=""
         className="slideshow--image"
         onClick={next}
         src={photos[((current % n) + n) % n]}
+      />
+      <Button
+        onClick={prev}
+        direction="left"
+        className="slideshow--nav slideshow--nav__left"
+      />
+      <Button
+        onClick={next}
+        direction="right"
+        className="slideshow--nav slideshow--nav__right"
       />
     </div>
   );
