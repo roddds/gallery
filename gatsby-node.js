@@ -48,9 +48,13 @@ async function getAlbums(graphql) {
       throw result.errors;
     }
 
-    return result.data.allFile.edges.map(f =>
-      f.node.relativeDirectory.replace("photos/", "")
-    );
+    return result.data.allFile.edges.map(f => {
+      const filename = f.node.relativeDirectory.replace("photos/", "");
+      if (filename.indexOf(" ") !== -1) {
+        throw Error(`Do not use spaces in album directories: "${filename}"`);
+      }
+      return filename;
+    });
   });
 
   return Array.from(new Set(directories));
