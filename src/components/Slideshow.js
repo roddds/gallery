@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { navigate } from "gatsby";
 import posed from "react-pose";
 import Button from "./Button";
@@ -10,7 +10,6 @@ const Img = posed.img({});
 function SlideShow(props) {
   const { photos } = props;
   const [current, setCurrent] = useState(0);
-  const [titleVisible, setTitleVisible] = useState(true);
 
   const n = photos.length;
   const next = () => setCurrent(c => c + 1);
@@ -20,14 +19,6 @@ function SlideShow(props) {
     left: prev,
     right: next,
     up: () => navigate("/"),
-  });
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setTitleVisible(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
   });
 
   return (
