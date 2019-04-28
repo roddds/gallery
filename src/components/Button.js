@@ -6,7 +6,7 @@ function Button(props) {
 
   return (
     <button {...rest}>
-      <span class={props.direction} />
+      <span className={props.direction} />
     </button>
   );
 }
