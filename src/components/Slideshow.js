@@ -4,6 +4,7 @@ import { navigate } from "gatsby";
 import posed from "react-pose";
 import Button from "./Button";
 import useArrows from "../hooks/useArrows";
+import useEsc from "../hooks/useEsc";
 
 const Img = posed.img({});
 
@@ -14,12 +15,15 @@ function SlideShow(props) {
   const n = photos.length;
   const next = () => setCurrent(c => c + 1);
   const prev = () => setCurrent(c => c - 1);
+  const back = () => navigate("/");
 
   useArrows({
     left: prev,
     right: next,
-    up: () => navigate("/"),
+    up: back,
   });
+
+  useEsc(back);
 
   return (
     <div className="slideshow--wrapper">
