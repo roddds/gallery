@@ -5,6 +5,7 @@ import posed from "react-pose";
 import Button from "./Button";
 import useArrows from "../hooks/useArrows";
 import useEsc from "../hooks/useEsc";
+import usePreload from "../hooks/usePreload";
 
 const Img = posed.img({});
 
@@ -13,6 +14,8 @@ function SlideShow(props) {
   const [current, setCurrent] = useState(0);
 
   const n = photos.length;
+  const currentPhotoIndex = ((current % n) + n) % n;
+
   const next = () => setCurrent(c => c + 1);
   const prev = () => setCurrent(c => c - 1);
   const back = () => navigate("/");
@@ -25,13 +28,19 @@ function SlideShow(props) {
 
   useEsc(back);
 
+  const nextImage = photos[currentPhotoIndex + 1];
+  const nextNextImage = photos[currentPhotoIndex + 2];
+
+  usePreload(nextImage);
+  usePreload(nextNextImage);
+
   return (
     <div className="slideshow--wrapper">
       <Img
         alt=""
         className="slideshow--image"
         onClick={next}
-        src={photos[((current % n) + n) % n]}
+        src={photos[currentPhotoIndex]}
       />
       <Button
         onClick={prev}
